@@ -1,3 +1,9 @@
+{% if user.is_authenticated %}
+
+{% for message in messages %}
+<h5> {{ message }}</h5>
+{% endfor %}
+
 {% load static %}
 {% static "images" as baseUrl %}
 
@@ -34,19 +40,19 @@
 								<div class="logo"><a href="index.html">Travello</a></div>
 								<nav class="main_nav">
 									<ul class="d-flex flex-row align-items-start justify-content-start">
-										<li class="active"><a href="index.html">Home</a></li>
+										<li class="active"><a href="index.html">Home</a></li>										
 										
-										<!-- <li><a href="about.html">About us</a></li>
-										<li><a href="#">Services</a></li>
-										<li><a href="news.html">News</a></li> -->
-										<li><a href="contact.html">Contact</a></li>
-										{% if user.is_authenticated %}
-										<li>Hello, {{user.first_name|title}}</li>
+										<!--<li><a href="news.html">News</a></li> -->
+										
+										
+                                        <li>Hello, {{user.first_name|title}}</li> 
 										<li><a href="{% url 'logout_user' %}">Logout</a></li>
-										{% else %}
-										<li><a href="{% url 'register_user' %}">Register</a></li>
-										<li><a href="{% url 'login_user' %}">Login</a></li>
-										{% endif %}
+										<li><a href="about.html">About us</a></li>
+										<li><a href="#">Services</a></li>
+										<li><a href="contact.html">Contact</a></li>
+										
+										
+										
 									</ul>
 								</nav>
 								<div class="header_phone ml-auto">Call us: 00-56 445 678 33</div>
@@ -274,6 +280,7 @@
 		</div>
 
 		<!-- Destinations -->
+
 
 		<div class="destinations" id="destinations">
 			<div class="container">
@@ -635,3 +642,9 @@
 </body>
 
 </html>
+
+{% else %}
+
+<h4><a href="{% url 'login_user' %}">Login</a> </h4>
+
+{% endif %}
